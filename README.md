@@ -12,3 +12,8 @@ Kesamaan URL koneksi antara program publisher dan subscriber menandakan bahwa ke
 ![Spike RabbitMQ Publisher](screenshots/RabbitMQ%20Publisher.png)
 
 Gambar di atas menampilkan RabbitMQ Management UI pada bagian Overview saat program dijalankan. Grafik pada bagian Message rates menunjukkan adanya lonjakan (spikes) berwarna ungu yang merepresentasikan aktivitas pengiriman (Publish) dan penerimaan (Deliver) pesan secara real-time. Terlihat bahwa grafik sempat mencapai angka 1.0/s, yang menandakan proses sinkronisasi data sedang berlangsung antara publisher dan subscriber. Sementara itu, pada bagian Queued messages, angka menunjukkan 0 (Ready), yang berarti semua pesan yang masuk ke antrean telah berhasil diambil dan diproses secara instan oleh subscriber tanpa ada yang tertahan atau menumpuk di broker. Dashboard ini memberikan konfirmasi visual bahwa throughput pesan berjalan lancar dan konfigurasi koneksi antar layanan sudah tepat.
+
+
+![Spike 2](screenshots/image%202.png)
+
+Lonjakan angka pada grafik "Total" tersebut terjadi karena adanya perbedaan kecepatan antara publisher yang mengirimkan banyak pesan sekaligus dengan subscriber yang kini berjalan lebih lambat akibat jeda satu detik yang kita tambahkan sebelumnya. Karena subscriber hanya mampu memproses satu pesan per detik, pesan-pesan lainnya terpaksa "mengantre" di dalam broker RabbitMQ, sehingga angka antrean tersebut melonjak hingga mencapai total pesan yang kamu kirimkan (dalam kasusmu 20 pesan). Hal ini justru menunjukkan bahwa RabbitMQ berhasil menjalankan fungsinya sebagai penyangga (buffer) yang handal, memastikan tidak ada data yang hilang meskipun sistem penerimanya sedang sibuk atau melambat.
