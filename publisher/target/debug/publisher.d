@@ -1,0 +1,1 @@
+/Users/anggarabayuadji/Documents/GitHub/Modul-9-Software-Architecture-Publisher/publisher/target/debug/publisher: /Users/anggarabayuadji/Documents/GitHub/Modul-9-Software-Architecture-Publisher/publisher/src/main.rs
